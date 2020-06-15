@@ -1,6 +1,3 @@
-/* The only changes you will make to this file are to add tests to addOverflowTests
- * and subOverflowTests.
- */
 #include <iostream>
 #include <fstream>
 #include <assert.h>
@@ -111,6 +108,9 @@ void getByteTests()
    assert(Tools::getByte(0x1234567821436587, 7) == 0x12);
    assert(Tools::getByte(0x1234567821436587, 8) == 0x00);
    assert(Tools::getByte(0x1234567821436587, -1) == 0x00);
+   assert(Tools::getByte(0x1234567821436587, 0x7fffffff) == 0x00);
+   assert(Tools::getByte(0x1234567821436587, 9) == 0x00);
+   assert(Tools::getByte(0x1234567821436587, 10) == 0x00);
 }
 
 /**
@@ -241,6 +241,8 @@ void setByteTests()
    assert(Tools::setByte(0x1122334455667788, 6) == 0x11ff334455667788);
    assert(Tools::setByte(0x1122334455667788, 7) == 0xff22334455667788);
    assert(Tools::setByte(0x1122334455667788, 8) == 0x1122334455667788);
+   assert(Tools::setByte(0x1122334455667788, -1) == 0x1122334455667788);
+   assert(Tools::setByte(0x1122334455667788, -2) == 0x1122334455667788);
    assert(Tools::setByte(0x0000000000000000, 7) == 0xff00000000000000);
    assert(Tools::setByte(0x0000000000000000, 6) == 0x00ff000000000000);
    assert(Tools::setByte(0x0000000000000000, 5) == 0x0000ff0000000000);
@@ -250,6 +252,9 @@ void setByteTests()
    assert(Tools::setByte(0x0000000000000000, 1) == 0x000000000000ff00);
    assert(Tools::setByte(0x0000000000000000, 0) == 0x00000000000000ff);
    assert(Tools::setByte(0x0000000000000000, 8) == 0x0000000000000000);
+   assert(Tools::setByte(0x0000000000000000, -1) == 0x0000000000000000);
+   assert(Tools::setByte(0x0023000000000000, -2) == 0x0023000000000000);
+   assert(Tools::setByte(0x0023000000000000, 0x7fffffff) == 0x0023000000000000);
 }
 
 /**
@@ -281,7 +286,17 @@ void addOverflowTests()
    assert(Tools::addOverflow(0xffffffffffffffff, 0xffffffffffffffff) == false);
    assert(Tools::addOverflow(0x8000000000000000, 0x8000000000000000) == true);
 
-   /* Add four more tests.  See lab directions. */
+/* 
+ *    Add four more tests.  You need to replace N, M, R, and S. 
+ *    See lab directions. 
+ */
+
+/*
+   assert(Tools::addOverflow(1, N) == true);
+   assert(Tools::addOverflow(1, M) == false);
+   assert(Tools::addOverflow(-1, R) == true);
+   assert(Tools::addOverflow(-1, S) == false);
+*/
 }
 
 /**
@@ -297,5 +312,14 @@ void subOverflowTests()
    assert(Tools::subOverflow(0xffffffffffffffff, 0xffffffffffffffff) == false);
    assert(Tools::subOverflow(0x0000000000000004, 0x8000000000000003) == true);
 
-   /* Add four more tests.  See lab directions. */
+/* 
+ *    Add four more tests.  You need to replace N, M, R, and S. 
+ *    See lab directions. 
+ */
+/*
+   assert(Tools::subOverflow(N, 1) == true);
+   assert(Tools::subOverflow(M, 1) == false);
+   assert(Tools::subOverflow(R, -2) == true);
+   assert(Tools::subOverflow(S, -2) == false);
+*/
 }

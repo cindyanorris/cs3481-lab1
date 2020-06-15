@@ -38,6 +38,11 @@ uint64_t Tools::buildLong(uint8_t bytes[LONGSIZE])
  * @param int32_t byteNum that indicates the byte to return (0 through 7)
  * @return 0 if byteNum is out of range
  *         byte 0, 1, .., or 7 of source if byteNum is within range
+ *
+ * RESTRICTIONS: You cannot use an if statement.  This means you
+ *               need to come up with some clever method to get the
+ *               code to return 0 if bytenum is out of range and
+ *               the selected byte otherwise.
 */
 uint64_t Tools::getByte(uint64_t source, int32_t byteNum)
 {
@@ -63,6 +68,9 @@ uint64_t Tools::getByte(uint64_t source, int32_t byteNum)
  * @return an uint64_t that holds a subset of the source bits
  *         that is returned in the low order bits; 0 if low or high 
  *         is out of range
+ *
+ * RESTRICTIONS: You can only use an if statement to determine whether
+ *               the low and high values are valid. 
  */
 uint64_t Tools::getBits(uint64_t source, int32_t low, int32_t high)
 {
@@ -85,6 +93,9 @@ uint64_t Tools::getBits(uint64_t source, int32_t low, int32_t high)
  * @param int32_t high that is the bit number of the highest numbered
  *        bit to be set to 1
  * @return an uint64_t that holds the modified source
+ *
+ * RESTRICTIONS: You can only use an if statement to determine whether
+ *               the low and high values are valid. 
  */
 uint64_t Tools::setBits(uint64_t source, int32_t low, int32_t high)
 {
@@ -105,6 +116,9 @@ uint64_t Tools::setBits(uint64_t source, int32_t low, int32_t high)
  * @param int32_t high that is the bit number of the highest numbered
  *        bit to be set to 0
  * @return an uint64_t that holds the modified source
+ *
+ * RESTRICTIONS: You can only use an if statement to determine whether
+ *               the low and high values are valid. 
  */
 uint64_t Tools::clearBits(uint64_t source, int32_t low, int32_t high)
 {
@@ -131,6 +145,9 @@ uint64_t Tools::clearBits(uint64_t source, int32_t low, int32_t high)
  *        bit of the destination to be modified
  * @param int32_t length that is the number of bits to be copied
  * @return uint64_t that is the modifed dest
+ *
+ * RESTRICTIONS: You can only use an if statement to determine whether
+ *               the low and high values are valid. 
  */
 uint64_t Tools::copyBits(uint64_t source, uint64_t dest, 
                          int32_t srclow, int32_t dstlow, int32_t length)
@@ -151,6 +168,12 @@ uint64_t Tools::copyBits(uint64_t source, uint64_t dest,
  * @param int32_t byteNum that indicates the number of the byte to be
  *        set to 0xff; the low order byte is byte number 0
  * @return uint64_t that is source with byte byteNum set to 0xff
+ *
+ * RESTRICTIONS: You cannot use an if statement.  This means you
+ *               need to come up with some clever method to get the
+ *               code to return 0 if bytenum is out of range and
+ *               the source otherwise.
+
  */
 uint64_t Tools::setByte(uint64_t source, int32_t byteNum)
 {
@@ -168,6 +191,8 @@ uint64_t Tools::setByte(uint64_t source, int32_t byteNum)
  * @param uint64_t source
  * @return 1 if source is negative when treated as a two's complement 
  *         value and 0 otherwise
+ *
+ * RESTRICTIONS: You cannot use an if statement.
  */
 uint8_t Tools::sign(uint64_t source)
 {
@@ -187,6 +212,8 @@ uint8_t Tools::sign(uint64_t source)
  * @param uint64_t op2 that is the other operand of the addition
  * @return true if op1 + op2 would result in an overflow assuming that op1
  *         and op2 contain 64-bit two's complement values
+ *
+ * RESTRICTIONS: You cannot use an if statement.
  */
 bool Tools::addOverflow(uint64_t op1, uint64_t op2)
 {
@@ -206,9 +233,12 @@ bool Tools::addOverflow(uint64_t op1, uint64_t op2)
  * @param uint64_t op2 that is the other operand of the subtraction
  * @return true if op2 - op1 would result in an overflow assuming that op1
  *         and op2 contain 64-bit two's complement values
+ *
+ * RESTRICTIONS: You cannot use an if statement.
  */
 bool Tools::subOverflow(uint64_t op1, uint64_t op2)
 {
+   //Note: the result computed is op2 - op1 (not op1 - op2)
    return 0;
 }
 
