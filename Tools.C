@@ -108,7 +108,7 @@ uint64_t Tools::setBits(uint64_t source, int32_t low, int32_t high)
  * bit numbers are out of range
  *
  * for example, clearBits(0x1122334455667788, 0, 7) returns 0x1122334455667700
- *              clearBits(0x1122334455667788, 8, f) returns 0x1122334455660088
+ *              clearBits(0x1122334455667788, 8, 15) returns 0x1122334455660088
  *
  * @param uint64_t source 
  * @param int32_t low that is the bit number of the lowest numbered

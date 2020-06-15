@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -g -c -Wall -std=c++11
+CFLAGS = -g -c -Wall -std=c++11 -O2
 OBJ = main.o Tools.o
 .C.o:
 	$(CC) $(CFLAGS) $< -o $@
