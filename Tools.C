@@ -39,10 +39,11 @@ uint64_t Tools::buildLong(uint8_t bytes[LONGSIZE])
  * @return 0 if byteNum is out of range
  *         byte 0, 1, .., or 7 of source if byteNum is within range
  *
- * RESTRICTIONS: You cannot use an if statement.  This means you
- *               need to come up with some clever method to get the
+ * RESTRICTIONS: You cannot use an if statement, the ternary operator, switch
+ *               statement or any other conditional statements. 
+ *               This means you need to come up with some clever method to get the
  *               code to return 0 if bytenum is out of range and
- *               the selected byte otherwise.
+ *               the selected byte otherwise.  
 */
 uint64_t Tools::getByte(uint64_t source, int32_t byteNum)
 {
@@ -69,8 +70,13 @@ uint64_t Tools::getByte(uint64_t source, int32_t byteNum)
  *         that is returned in the low order bits; 0 if low or high 
  *         is out of range
  *
- * RESTRICTIONS: You can only use an if statement to determine whether
- *               the low and high values are valid. 
+ *
+ * RESTRICTIONS: You can use an if statement to determine whether
+ *               the low and high values are valid. The remaining statements
+ *               need to be simple assignment statements. (No loops, switch,
+ *               ternary operator , or other conditional statements....)
+ *               The purpose of this restriction is to push you to write
+ *               "clean" code.
  */
 uint64_t Tools::getBits(uint64_t source, int32_t low, int32_t high)
 {
@@ -94,8 +100,13 @@ uint64_t Tools::getBits(uint64_t source, int32_t low, int32_t high)
  *        bit to be set to 1
  * @return an uint64_t that holds the modified source
  *
- * RESTRICTIONS: You can only use an if statement to determine whether
- *               the low and high values are valid. 
+ * RESTRICTIONS: You can use an if statement to determine whether
+ *               the low and high values are valid. The remaining statements
+ *               need to be simple assignment statements. (No loops, switch,
+ *               ternary operator, or other conditional statements ....)
+ *               You can use other functions that you have written.
+ *               The purpose of this restriction is to push you to write
+ *               "clean" code.
  */
 uint64_t Tools::setBits(uint64_t source, int32_t low, int32_t high)
 {
@@ -117,8 +128,13 @@ uint64_t Tools::setBits(uint64_t source, int32_t low, int32_t high)
  *        bit to be set to 0
  * @return an uint64_t that holds the modified source
  *
- * RESTRICTIONS: You can only use an if statement to determine whether
- *               the low and high values are valid. 
+ * RESTRICTIONS: You can use an if statement to determine whether
+ *               the low and high values are valid. The remaining statements
+ *               need to be simple assignment statements. (No loops, switch,
+ *               ternary operator, or other conditional statements ....)
+ *               You can use other functions that you have written.
+ *               The purpose of this restriction is to push you to write
+ *               "clean" code.
  */
 uint64_t Tools::clearBits(uint64_t source, int32_t low, int32_t high)
 {
@@ -146,8 +162,13 @@ uint64_t Tools::clearBits(uint64_t source, int32_t low, int32_t high)
  * @param int32_t length that is the number of bits to be copied
  * @return uint64_t that is the modifed dest
  *
- * RESTRICTIONS: You can only use an if statement to determine whether
- *               the low and high values are valid. 
+ * RESTRICTIONS: You can use an if statement to determine whether
+ *               the low and high values are valid. The remaining statements
+ *               need to be simple assignment statements. (No loops, switch,
+ *               ternary operator, or other conditional statements ....) 
+ *               You can use other functions that you have written.
+ *               The purpose of this restriction is to push you to write
+ *               "clean" code.
  */
 uint64_t Tools::copyBits(uint64_t source, uint64_t dest, 
                          int32_t srclow, int32_t dstlow, int32_t length)
@@ -169,11 +190,12 @@ uint64_t Tools::copyBits(uint64_t source, uint64_t dest,
  *        set to 0xff; the low order byte is byte number 0
  * @return uint64_t that is source with byte byteNum set to 0xff
  *
- * RESTRICTIONS: You cannot use an if statement.  This means you
- *               need to come up with some clever method to get the
- *               code to return 0 if bytenum is out of range and
- *               the source otherwise.
-
+ * RESTRICTIONS: You cannot use an if statement, the ternary operator, switch
+ *               statement or any other conditional statements. 
+ *               This means you need to come up with some clever method to get the
+ *               code to return unmodified source if bytenum is out of range and
+ *               the modified source otherwise.  
+ *
  */
 uint64_t Tools::setByte(uint64_t source, int32_t byteNum)
 {
@@ -192,7 +214,9 @@ uint64_t Tools::setByte(uint64_t source, int32_t byteNum)
  * @return 1 if source is negative when treated as a two's complement 
  *         value and 0 otherwise
  *
- * RESTRICTIONS: You cannot use an if statement.
+ * RESTRICTIONS: You cannot use an if statement, ternary operator, switch statement
+ *               or any other conditional statement. 
+ *                
  */
 uint8_t Tools::sign(uint64_t source)
 {
@@ -213,7 +237,14 @@ uint8_t Tools::sign(uint64_t source)
  * @return true if op1 + op2 would result in an overflow assuming that op1
  *         and op2 contain 64-bit two's complement values
  *
- * RESTRICTIONS: You cannot use an if statement.
+ * RESTRICTIONS: You cannot use an if statement, ternary operator, switch statement
+ *               or any other conditional statement.  However, you can use other
+ *               functions you have written and conditional expressions. For example,
+ *               return op1 != op2; 
+ *               is allowed, but
+ *               if (op1 != op2) return true; 
+ *               is not.  The purpose of this restriction is to push you to write
+ *               "clean" code. 
  */
 bool Tools::addOverflow(uint64_t op1, uint64_t op2)
 {
@@ -234,7 +265,14 @@ bool Tools::addOverflow(uint64_t op1, uint64_t op2)
  * @return true if op2 - op1 would result in an overflow assuming that op1
  *         and op2 contain 64-bit two's complement values
  *
- * RESTRICTIONS: You cannot use an if statement.
+ * RESTRICTIONS: You cannot use an if statement, ternary operator, switch statement
+ *               or any other conditional statement.  However, you can use other
+ *               functions you have written and conditional expressions. For example,
+ *               return op1 != op2; 
+ *               is allowed, but
+ *               if (op1 != op2) return true; 
+ *               is not.  The purpose of this restriction is to push you to write
+ *               "clean" code. 
  */
 bool Tools::subOverflow(uint64_t op1, uint64_t op2)
 {
